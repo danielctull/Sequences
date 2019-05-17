@@ -13,12 +13,12 @@ public struct DepthFirstSequence<Element> {
 extension DepthFirstSequence {
 
     public struct Iterator {
-        private var current: Element?
+
+        private var elements: [Element]
         private let children: (Element) -> [Element]
-        private var iterators: [DepthFirstSequence.Iterator] = []
 
         fileprivate init(parent: Element, children: @escaping (Element) -> [Element]) {
-            current = parent
+            elements = [parent]
             self.children = children
         }
     }
@@ -28,32 +28,10 @@ extension DepthFirstSequence.Iterator: IteratorProtocol {
 
     public mutating func next() -> Element? {
 
-        if let current = current {
+        guard let next = elements.popLast() else { return nil }
 
-            iterators = children(current).map { DepthFirstSequence.Iterator(parent: $0, children: children) }
-
-            self.current = nil
-
-            print("NEXT: \(current)")
-
-            return current
-        }
-
-        while !iterators.isEmpty {
-
-            var iterator = iterators[0]
-
-            guard let child = iterator.next() else {
-                iterators = Array(iterators.dropFirst())
-                continue
-            }
-
-            iterators[0] = iterator
-
-            return child
-        }
-
-        return nil
+        elements.append(contentsOf: children(next).reversed())
+        return next
     }
 }
 
