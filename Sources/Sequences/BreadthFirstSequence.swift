@@ -13,14 +13,8 @@ public struct BreadthFirstSequence<Element> {
 extension BreadthFirstSequence {
 
     public struct Iterator {
-
-        private var elements: [Element]
-        private let children: (Element) -> [Element]
-
-        fileprivate init(parent: Element, children: @escaping (Element) -> [Element]) {
-            elements = [parent]
-            self.children = children
-        }
+        fileprivate var elements: [Element]
+        fileprivate let children: (Element) -> [Element]
     }
 }
 
@@ -38,6 +32,6 @@ extension BreadthFirstSequence.Iterator: IteratorProtocol {
 extension BreadthFirstSequence: Sequence {
 
     public func makeIterator() -> Iterator {
-        return Iterator(parent: initial, children: children)
+        return Iterator(elements: [initial], children: children)
     }
 }

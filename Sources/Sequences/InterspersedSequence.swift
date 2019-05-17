@@ -2,26 +2,12 @@
 /// A sequence that presents the elements of a base sequence of elements
 /// concatenated using a given separator.
 public struct InterspersedSequence<Base: Sequence> {
-
-    private let base: Base
-    private let separator: Base.Element
-
-    /// Creates a sequence that presents the elements in base interleaved with
-    /// the separator.
-    ///
-    /// - Parameters:
-    ///   - base: The original sequence of elements.
-    ///   - separator: The separator to insert between elements.
-    public init(base: Base, separator: Base.Element) {
-        self.base = base
-        self.separator = separator
-    }
+    fileprivate let base: Base
+    fileprivate let separator: Base.Element
 }
 
 extension InterspersedSequence {
 
-    /// An iterator that presents the elements of base sequence of elements
-    /// concatenated using a given separator.
     public struct Iterator {
 
         private enum State {
@@ -34,12 +20,6 @@ extension InterspersedSequence {
         private let separator: Base.Element
         private var state = State.start
 
-        /// Creates an iterator that presents the elements in base interleaved
-        /// with the separator.
-        ///
-        /// - Parameters:
-        ///   - base: The base iterator of elements.
-        ///   - separator: The separator to insert between elements.
         fileprivate init(base: Base.Iterator, separator: Element) {
             self.base = base
             self.separator = separator
@@ -49,10 +29,6 @@ extension InterspersedSequence {
 
 extension InterspersedSequence.Iterator: IteratorProtocol {
 
-    /// Advances to the next element and returns it, or nil
-    /// if no next element exists.
-    ///
-    /// - Returns: The next element or nil if no next element exists.
     public mutating func next() -> Base.Element? {
 
         switch state {
@@ -78,9 +54,6 @@ extension InterspersedSequence.Iterator: IteratorProtocol {
 
 extension InterspersedSequence: Sequence {
 
-    /// Return an iterator over the elements of this sequence.
-    ///
-    /// - Returns: An iterator over the elements of this sequence.
     public func makeIterator() -> InterspersedSequence<Base>.Iterator {
         return Iterator(base: base.makeIterator(), separator: separator)
     }
