@@ -1,4 +1,35 @@
 
+extension Sequence {
+
+    /// Returns a sequence containing elements of this sequence with the
+    /// given separator inserted between each element.
+    ///
+    /// This example shows how an array of String instances can be interspersed,
+    /// using a String as the separator:
+    /// ```
+    /// let array = ["A", "B", "C", "D"]
+    /// let sequence = array.interspersed(with: "-")
+    /// print(Array(sequence))
+    ///
+    /// -> prints ["A", "-", "B", "-", "C", "-", "D"]
+    /// ```
+    ///
+    /// The following example shows a String being interspersed with a Character:
+    /// ```
+    /// let string = "ABCDE"
+    /// let sequence = string.interspersed(with: "-")
+    /// print(String(sequence))
+    ///
+    /// -> prints "A-B-C-D-E"
+    /// ```
+    ///
+    /// - Parameter separator: An element to insert between each of this sequence’s elements.
+    /// - Returns: The interspersed sequence of elements.
+    public func interspersed(with separator: Element) -> InterspersedSequence<Self> {
+        return InterspersedSequence(base: self, separator: separator)
+    }
+}
+
 /// A sequence that presents the elements of a base sequence of elements
 /// concatenated using a given separator.
 public struct InterspersedSequence<Base: Sequence> {
@@ -56,36 +87,5 @@ extension InterspersedSequence: Sequence {
 
     public func makeIterator() -> InterspersedSequence<Base>.Iterator {
         return Iterator(base: base.makeIterator(), separator: separator)
-    }
-}
-
-extension Sequence {
-
-    /// Returns a sequence containing elements of this sequence with the
-    /// given separator inserted between each element.
-    ///
-    /// This example shows how an array of String instances can be interspersed,
-    /// using a String as the separator:
-    /// ```
-    /// let array = ["A", "B", "C", "D"]
-    /// let sequence = array.interspersed(with: "-")
-    /// print(Array(sequence))
-    ///
-    /// -> prints ["A", "-", "B", "-", "C", "-", "D"]
-    /// ```
-    ///
-    /// The following example shows a String being interspersed with a Character:
-    /// ```
-    /// let string = "ABCDE"
-    /// let sequence = string.interspersed(with: "-")
-    /// print(String(sequence))
-    ///
-    /// -> prints "A-B-C-D-E"
-    /// ```
-    ///
-    /// - Parameter separator: An element to insert between each of this sequence’s elements.
-    /// - Returns: The interspersed sequence of elements.
-    public func interspersed(with separator: Element) -> InterspersedSequence<Self> {
-        return InterspersedSequence(base: self, separator: separator)
     }
 }
