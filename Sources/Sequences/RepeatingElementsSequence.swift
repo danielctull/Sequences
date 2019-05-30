@@ -62,4 +62,6 @@ extension RepeatingElementsSequence: Sequence {
     public func makeIterator() -> Iterator {
         return Iterator(base: base.makeIterator(), amount: amount)
     }
+
+    public var underestimatedCount: Int { return amount * base.underestimatedCount }
 }

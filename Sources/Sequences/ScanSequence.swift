@@ -72,4 +72,6 @@ extension ScanSequence: Sequence {
                         result: initial,
                         transform: transform)
     }
+
+    public var underestimatedCount: Int { return base.underestimatedCount }
 }

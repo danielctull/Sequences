@@ -88,4 +88,8 @@ extension InterspersedSequence: Sequence {
     public func makeIterator() -> InterspersedSequence<Base>.Iterator {
         return Iterator(base: base.makeIterator(), separator: separator)
     }
+
+    public var underestimatedCount: Int {
+        return Swift.max(0, 2 * base.underestimatedCount - 1)
+    }
 }
