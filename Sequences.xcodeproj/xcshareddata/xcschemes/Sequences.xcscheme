@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "9999"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Generate LinuxMain"
+               scriptText = "cd ${PROJECT_DIR}&#10;swift test --generate-linuxmain&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "Sequences::Sequences"
+                     BuildableName = "Sequences.framework"
+                     BlueprintName = "Sequences"
+                     ReferencedContainer = "container:Sequences.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -28,6 +46,15 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Generate LinuxMain"
+               scriptText = "swift test --generate-linuxmain&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <Testables>
          <TestableReference
             skipped = "NO">
