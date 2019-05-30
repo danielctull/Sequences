@@ -45,6 +45,7 @@ extension RepeatingElementsSequenceTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__RepeatingElementsSequenceTests = [
+        ("testRepeatingElements0", testRepeatingElements0),
         ("testRepeatingElements3", testRepeatingElements3),
         ("testRepeatingElements5", testRepeatingElements5),
     ]
