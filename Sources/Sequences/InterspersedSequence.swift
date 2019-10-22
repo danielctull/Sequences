@@ -43,7 +43,7 @@ extension InterspersedSequence {
 
         private enum State {
             case start
-            case base(element: Base.Element)
+            case element(Base.Element)
             case separator
         }
 
@@ -70,10 +70,10 @@ extension InterspersedSequence.Iterator: IteratorProtocol {
 
         case .separator:
             guard let next = base.next() else { return nil }
-            state = .base(element: next)
+            state = .element(next)
             return separator
 
-        case .base(let element):
+        case .element(let element):
             state = .separator
             return element
         }
