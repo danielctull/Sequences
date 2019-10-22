@@ -9,10 +9,6 @@ final class DepthFirstSequenceTests: XCTestCase {
         struct Item {
             let name: String
             let children: [Item]
-
-            var hierarchy: DepthFirstSequence<Item> {
-                return DepthFirstSequence(initial: self, children: { $0.children })
-            }
         }
 
         let item = Item(name: "0", children: [
@@ -36,7 +32,11 @@ final class DepthFirstSequenceTests: XCTestCase {
             ])
         ])
 
-        XCTAssertEqual(Array(item.hierarchy.map { $0.name }), [
+        let hierarchy = DepthFirstSequence(initial: item, children: {
+            $0.children
+        })
+
+        XCTAssertEqual(hierarchy.map { $0.name }, [
             "0",
             "0.0",
             "0.0.0",

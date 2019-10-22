@@ -9,10 +9,6 @@ final class BreadthFirstSequenceTests: XCTestCase {
         struct Item {
             let name: String
             let children: [Item]
-
-            var hierarchy: BreadthFirstSequence<Item> {
-                return BreadthFirstSequence(initial: self, children: { $0.children })
-            }
         }
 
         let item = Item(name: "0", children: [
@@ -36,7 +32,11 @@ final class BreadthFirstSequenceTests: XCTestCase {
             ])
         ])
 
-        XCTAssertEqual(Array(item.hierarchy.map { $0.name }), [
+        let hierarchy = BreadthFirstSequence(initial: item, children: {
+            $0.children
+        })
+
+        XCTAssertEqual(hierarchy.map { $0.name }, [
             "0",
             "0.0",
             "0.1",
