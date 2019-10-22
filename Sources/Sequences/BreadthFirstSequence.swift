@@ -32,6 +32,6 @@ extension BreadthFirstSequence.Iterator: IteratorProtocol {
 extension BreadthFirstSequence: Sequence {
 
     public func makeIterator() -> Iterator {
-        return Iterator(elements: [initial], children: children)
+        Iterator(elements: [initial], children: children)
     }
 }

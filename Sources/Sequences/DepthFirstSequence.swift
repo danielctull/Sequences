@@ -32,6 +32,6 @@ extension DepthFirstSequence.Iterator: IteratorProtocol {
 extension DepthFirstSequence: Sequence {
 
     public func makeIterator() -> Iterator {
-        return Iterator(elements: [initial], children: children)
+        Iterator(elements: [initial], children: children)
     }
 }

@@ -15,7 +15,7 @@ extension Sequence {
     /// - Parameter amount: The amount of times to repeat the elements.
     /// - Returns: The sequence of repeated elements.
     public func repeatingElements(_ amount: Int) -> RepeatingElementsSequence<Self> {
-        return RepeatingElementsSequence(base: self, amount: amount)
+        RepeatingElementsSequence(base: self, amount: amount)
     }
 }
 
@@ -60,7 +60,7 @@ extension RepeatingElementsSequence.Iterator: IteratorProtocol {
 extension RepeatingElementsSequence: Sequence {
 
     public func makeIterator() -> Iterator {
-        return Iterator(base: base.makeIterator(), amount: amount)
+        Iterator(base: base.makeIterator(), amount: amount)
     }
 
     public var underestimatedCount: Int { return amount * base.underestimatedCount }

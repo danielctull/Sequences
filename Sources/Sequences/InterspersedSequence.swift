@@ -86,7 +86,7 @@ extension InterspersedSequence.Iterator: IteratorProtocol {
 extension InterspersedSequence: Sequence {
 
     public func makeIterator() -> InterspersedSequence<Base>.Iterator {
-        return Iterator(base: base.makeIterator(), separator: separator)
+        Iterator(base: base.makeIterator(), separator: separator)
     }
 
     public var underestimatedCount: Int {

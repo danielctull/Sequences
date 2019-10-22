@@ -24,7 +24,7 @@ extension Sequence {
         _ initial: Result,
         _ transform: @escaping (Result, Element) -> Result
     ) -> ScanSequence<Result, Self> {
-        return ScanSequence(base: self, initial: initial, transform: transform)
+        ScanSequence(base: self, initial: initial, transform: transform)
     }
 }
 
@@ -68,9 +68,9 @@ extension ScanSequence.Iterator: IteratorProtocol {
 extension ScanSequence: Sequence {
 
     public func makeIterator() -> Iterator {
-        return Iterator(base: base.makeIterator(),
-                        result: initial,
-                        transform: transform)
+        Iterator(base: base.makeIterator(),
+                 result: initial,
+                 transform: transform)
     }
 
     public var underestimatedCount: Int { return base.underestimatedCount }

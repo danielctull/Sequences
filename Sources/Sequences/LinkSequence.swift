@@ -45,6 +45,6 @@ extension LinkSequence.Iterator: IteratorProtocol {
 extension LinkSequence: Sequence {
 
     public func makeIterator() -> Iterator {
-        return Iterator(current: initial, nextElement: next)
+        Iterator(current: initial, nextElement: next)
     }
 }
