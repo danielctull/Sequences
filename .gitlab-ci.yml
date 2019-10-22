@@ -1,4 +1,4 @@
 test:
-  image: swift:5.0.1
+  image: swift:5.1
   script:
     - swift test
