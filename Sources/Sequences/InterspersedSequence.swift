@@ -69,12 +69,9 @@ extension InterspersedSequence.Iterator: IteratorProtocol {
             return base.next()
 
         case .separator:
-            if let next = base.next() {
-                state = .base(element: next)
-                return separator
-            } else {
-                return nil
-            }
+            guard let next = base.next() else { return nil }
+            state = .base(element: next)
+            return separator
 
         case .base(let element):
             state = .separator
