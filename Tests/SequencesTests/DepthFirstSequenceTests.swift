@@ -1,6 +1,6 @@
 
-import XCTest
 import Sequences
+import XCTest
 
 final class DepthFirstSequenceTests: XCTestCase {
 
